@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import by.dzhivushko.training.shop.service.ProductService;
 import by.dzhivushko.training.shop.webapp.page.AbstractPage;
+import by.dzhivushko.training.shop.webapp.page.product.panel.ProductListPanel;
 
 public class ProductsPage extends AbstractPage {
 
@@ -12,8 +13,7 @@ public class ProductsPage extends AbstractPage {
 
     public ProductsPage() {
         super();
-
-        System.out.print(productService);
+        add(new ProductListPanel("list-panel"));
     }
 
 }

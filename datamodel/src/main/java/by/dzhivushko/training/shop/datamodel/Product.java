@@ -1,5 +1,6 @@
 package by.dzhivushko.training.shop.datamodel;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,6 +16,12 @@ public class Product extends AbstractModel {
 
     @Column
     private Double basePrice;
+
+    @Column
+    private Date created;
+
+    @Column
+    private Boolean active;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<ProductVariant> variants;
@@ -33,6 +40,22 @@ public class Product extends AbstractModel {
 
     public void setBasePrice(Double basePrice) {
         this.basePrice = basePrice;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @Override

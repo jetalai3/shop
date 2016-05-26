@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaQuery;
 
 import by.dzhivushko.training.shop.dataaccess.AbstractDao;
+import by.dzhivushko.training.shop.dataaccess.filters.AbstractFilter;
+import by.dzhivushko.training.shop.datamodel.AbstractModel;
 
 public class AbstractDaoImpl<T, ID> implements AbstractDao<T, ID> {
 
@@ -58,4 +61,10 @@ public class AbstractDaoImpl<T, ID> implements AbstractDao<T, ID> {
         return entityManager;
     }
 
+    protected void setPaging(AbstractFilter filter, TypedQuery<? extends AbstractModel> q) {
+        if (filter.getOffset() != null && filter.getLimit() != null) {
+            q.setFirstResult(filter.getOffset());
+            q.setMaxResults(filter.getLimit());
+        }
+    }
 }
